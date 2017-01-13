@@ -1,0 +1,13 @@
+{
+  "name": "videojs-splash-play",
+  "author": "Adam Oliver &lt;mail@adamoliver.net&gt;",
+  "license": "MIT",
+  "main": [
+    "dist/videojs-splash-play.min.js"
+  ],
+  "keywords": [
+    "videojs",
+    "videojs-plugin"
+  ]
+}
+
