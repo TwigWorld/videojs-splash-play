@@ -55,7 +55,7 @@ QUnit.test('registers itself with video.js', function(assert) {
     1,
     this.player.contentEl().getElementsByClassName('vjs-splash-play').length,
     'The plugin should create a splash play button element'
-  )
+  );
 });
 
 QUnit.test('adds the default class to the player', function(assert) {
@@ -77,7 +77,7 @@ QUnit.test('adds the default class to the player', function(assert) {
   assert.ok(
     icon,
     'The plugin should create an icon element with the default css class'
-  )
+  );
 });
 
 QUnit.test('adds a custom class to the player', function(assert) {
@@ -101,7 +101,7 @@ QUnit.test('adds a custom class to the player', function(assert) {
   assert.ok(
     icon,
     'The plugin should create an icon element with the custom css class'
-  )
+  );
 });
 
 QUnit.test('adds a class to the icon when the video is large', function(assert) {
@@ -123,7 +123,7 @@ QUnit.test('adds a class to the icon when the video is large', function(assert) 
   assert.ok(
     icon,
     'The plugin should add a css class to the icon when the player is large'
-  )
+  );
 
 });
 
@@ -149,5 +149,5 @@ QUnit.test('removes a class on the icon when the video is small', function(asser
   assert.notOk(
     icon,
     'The plugin should add a css class to the icon when the player is large'
-  )
+  );
 });

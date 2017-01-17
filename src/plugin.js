@@ -2,8 +2,8 @@ import videojs from 'video.js';
 
 // Default options for the plugin.
 const defaults = {
-    cssClassPrefix: 'icon',
-    largePlayerSize: 500
+  cssClassPrefix: 'icon',
+  largePlayerSize: 500
 };
 
 /**
@@ -23,13 +23,34 @@ const splashPlay = function(options) {
     options = videojs.mergeOptions(defaults, options);
 
     let player = this;
-    let splashButton = document.createElement("div");
+    let splashButton = document.createElement('div');
+
+    function play() {
+      player.play();
+    }
+
+    function hideButton() {
+      splashButton.style.display = 'none';
+    }
+
+    function resize() {
+      // Add an additional class to the button if the player is larger
+      let button = document.querySelectorAll(`#${player.id()} .vjs-splash-play`);
+      let largeCssClass = 'vjs-splash-play-large';
+
+      if (player.el().offsetWidth > options.largePlayerSize) {
+        button[0].classList.add(largeCssClass);
+      } else {
+        button[0].classList.remove(largeCssClass);
+      }
+    }
 
     // Create the CSS class name for the button
-    splashButton.className = "vjs-splash-play";
+    splashButton.className = 'vjs-splash-play';
     let buttonClassName = player.isAudio() ?
-        `${options.cssClassPrefix} ${options.cssClassPrefix}-audio` :
-        `${options.cssClassPrefix} ${options.cssClassPrefix}-play`;
+      `${options.cssClassPrefix} ${options.cssClassPrefix}-audio` :
+      `${options.cssClassPrefix} ${options.cssClassPrefix}-play`;
+
     splashButton.className += ` ${buttonClassName}`;
 
     // Play on click
@@ -44,26 +65,6 @@ const splashPlay = function(options) {
     resize();
 
     window.addEventListener('resize', resize, true);
-
-    function play () {
-        player.play();
-    }
-
-    function hideButton () {
-        splashButton.style.display = 'none'
-    }
-
-    function resize () {
-        // Add an additional class to the button if the player is larger
-        let button = document.querySelectorAll(`#${player.id()} .vjs-splash-play`);
-        let largeCssClass = 'vjs-splash-play-large';
-
-        if (player.el().offsetWidth > options.largePlayerSize) {
-            button[0].classList.add(largeCssClass);
-        } else {
-            button[0].classList.remove(largeCssClass);
-        }
-    }
 
   });
 };
