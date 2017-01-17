@@ -38,7 +38,7 @@ QUnit.module('videojs-splash-play', {
 });
 
 QUnit.test('registers itself with video.js', function(assert) {
-  assert.expect(1);
+  assert.expect(2);
 
   assert.strictEqual(
     Player.prototype.splashPlay,
@@ -51,4 +51,103 @@ QUnit.test('registers itself with video.js', function(assert) {
   // Tick the clock forward enough to trigger the player to be "ready".
   this.clock.tick(1);
 
+  assert.equal(
+    1,
+    this.player.contentEl().getElementsByClassName('vjs-splash-play').length,
+    'The plugin should create a splash play button element'
+  )
+});
+
+QUnit.test('adds the default class to the player', function(assert) {
+  assert.expect(2);
+
+  assert.strictEqual(
+    Player.prototype.splashPlay,
+    plugin,
+    'videojs-splash-play plugin was registered'
+  );
+
+  this.player.splashPlay();
+
+  // Tick the clock forward enough to trigger the player to be "ready".
+  this.clock.tick(1);
+
+  const icon = this.player.contentEl().getElementsByClassName('icon-play')[0];
+
+  assert.ok(
+    icon,
+    'The plugin should create an icon element with the default css class'
+  )
+});
+
+QUnit.test('adds a custom class to the player', function(assert) {
+  assert.expect(2);
+
+  assert.strictEqual(
+    Player.prototype.splashPlay,
+    plugin,
+    'videojs-splash-play plugin was registered'
+  );
+
+  this.player.splashPlay({
+    cssClassPrefix: 'custom'
+  });
+
+  // Tick the clock forward enough to trigger the player to be "ready".
+  this.clock.tick(1);
+
+  const icon = this.player.contentEl().getElementsByClassName('custom-play')[0];
+
+  assert.ok(
+    icon,
+    'The plugin should create an icon element with the custom css class'
+  )
+});
+
+QUnit.test('adds a class to the icon when the video is large', function(assert) {
+  assert.expect(2);
+
+  assert.strictEqual(
+    Player.prototype.splashPlay,
+    plugin,
+    'videojs-splash-play plugin was registered'
+  );
+
+  this.player.splashPlay();
+
+  // Tick the clock forward enough to trigger the player to be "ready".
+  this.clock.tick(1);
+
+  const icon = this.player.contentEl().getElementsByClassName('vjs-splash-play-large')[0];
+
+  assert.ok(
+    icon,
+    'The plugin should add a css class to the icon when the player is large'
+  )
+
+});
+
+QUnit.test('removes a class on the icon when the video is small', function(assert) {
+  assert.expect(2);
+
+  assert.strictEqual(
+    Player.prototype.splashPlay,
+    plugin,
+    'videojs-splash-play plugin was registered'
+  );
+
+  this.player.el().style.height = '100px';
+  this.player.el().style.width = '100px';
+
+  this.player.splashPlay();
+
+  // Tick the clock forward enough to trigger the player to be "ready".
+  this.clock.tick(1);
+
+  const icon = this.player.contentEl().getElementsByClassName('vjs-splash-play-large')[0];
+
+  assert.notOk(
+    icon,
+    'The plugin should add a css class to the icon when the player is large'
+  )
 });

@@ -20,7 +20,7 @@ const defaults = {
  */
 const splashPlay = function(options) {
   this.ready(() => {
-    let options = videojs.mergeOptions(defaults, options);
+    options = videojs.mergeOptions(defaults, options);
 
     let player = this;
     let splashButton = document.createElement("div");
@@ -47,7 +47,6 @@ const splashPlay = function(options) {
 
     function play () {
         player.play();
-        hideButton();
     }
 
     function hideButton () {
