@@ -62,6 +62,10 @@ const splashPlay = function(options) {
     // When the player is playing, hide the button
     player.on('play', hideButton);
 
+    player.on('dispose', () => {
+      window.removeEventListener('resize', resize, true);
+    });
+
     resize();
 
     window.addEventListener('resize', resize, true);

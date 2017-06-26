@@ -1,6 +1,6 @@
 {
   "name": "videojs-splash-play",
-  "version": "0.0.0",
+  "version": "1.0.1",
   "description": "Replaces the default videojs play icon with a custom icon for video and audio players",
   "main": "es5/plugin.js",
   "generator-videojs-plugin": {
