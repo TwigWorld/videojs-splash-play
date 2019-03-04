@@ -23,7 +23,7 @@ const splashPlay = function(options) {
     options = videojs.mergeOptions(defaults, options);
 
     let player = this;
-    let splashButton = document.createElement('div');
+    let splashButton = document.createElement('button');
 
     function play() {
       player.play();

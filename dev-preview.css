@@ -1,0 +1,30 @@
+.video-js button.vjs-splash-play {
+    position: absolute;
+    right: 50%;
+    top: 50%;
+    transform: translate(50%, -50%);
+    box-sizing: border-box;
+	display:block;
+	width:80px;
+	height:80px;
+	border: 6px solid #fff;
+	border-radius: 50%;
+
+}
+
+.video-js button.vjs-splash-play:after {
+    content: '';
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-left: 30px solid white;
+    height: 0px;
+    display: block;
+    position: absolute;
+    right: 45%;
+    top: 50%;
+    transform: translate(50%, -50%);
+}
+
+.video-js#videojs-splash-play-player .vjs-big-play-button {
+    display: none;
+}
