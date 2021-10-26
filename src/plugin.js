@@ -25,6 +25,8 @@ const splashPlay = function(options) {
     let player = this;
     let splashButton = document.createElement('button');
 
+    splashButton.setAttribute('aria-label', 'play button');
+
     function play() {
       player.play();
     }
