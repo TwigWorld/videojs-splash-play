@@ -4,7 +4,7 @@
   "description": "Replaces the default videojs play icon with a custom icon for video and audio players",
   "main": "es5/plugin.js",
   "generator-videojs-plugin": {
-    "version": "2.3.0"
+    "version": "2.2.0"
   },
   "scripts": {
     "prebuild": "npm run clean",
