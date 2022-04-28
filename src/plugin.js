@@ -6,6 +6,9 @@ const defaults = {
   largePlayerSize: 500
 };
 
+// Cross-compatibility for Video.js 5 and 6.
+const registerPlugin = videojs.registerPlugin || videojs.plugin;
+
 /**
  * A video.js plugin.
  *
@@ -22,61 +25,51 @@ const splashPlay = function(options) {
   this.ready(() => {
     options = videojs.mergeOptions(defaults, options);
 
-    let player = this;
-    let splashButton = document.createElement('button');
+    const player = this;
 
-    splashButton.setAttribute('aria-label', 'play button');
+    const button = player.addChild('button');
+
+    button.controlText('Play Button');
 
     function play() {
       player.play();
     }
+    button.on('click', play);
 
     function hideButton() {
-      splashButton.style.display = 'none';
+      player.removeChild(button);
     }
 
     function resize() {
       // Add an additional class to the button if the player is larger
-      let button = document.querySelectorAll(`#${player.id()} .vjs-splash-play`);
-      let largeCssClass = 'vjs-splash-play-large';
+      const largeCssClass = 'vjs-splash-play-large';
 
       if (player.el().offsetWidth > options.largePlayerSize) {
-        button[0].classList.add(largeCssClass);
+        button.addClass(largeCssClass);
       } else {
-        button[0].classList.remove(largeCssClass);
+        button.removeClass(largeCssClass);
       }
     }
 
     // Create the CSS class name for the button
-    splashButton.className = 'vjs-splash-play';
-    let buttonClassName = player.isAudio() ?
-      `${options.cssClassPrefix} ${options.cssClassPrefix}-audio` :
-      `${options.cssClassPrefix} ${options.cssClassPrefix}-play`;
+    button.addClass('vjs-splash-play');
+    const buttonClassName = player.isAudio() ?
+      `${options.cssClassPrefix}-audio` :
+      `${options.cssClassPrefix}-play`;
 
-    splashButton.className += ` ${buttonClassName}`;
-
-    // Play on click
-    splashButton.addEventListener('click', play);
-
-    // Add the button to the player
-    player.el().appendChild(splashButton);
+    button.addClass(options.cssClassPrefix);
+    button.addClass(buttonClassName);
 
     // When the player is playing, hide the button
     player.on('play', hideButton);
 
-    player.on('dispose', () => {
-      window.removeEventListener('resize', resize, true);
-    });
-
     resize();
-
-    window.addEventListener('resize', resize, true);
-
+    player.on('playerresize', resize);
   });
 };
 
 // Register the plugin with video.js.
-videojs.plugin('splashPlay', splashPlay);
+registerPlugin('splashPlay', splashPlay);
 
 // Include the version number.
 splashPlay.VERSION = '__VERSION__';
