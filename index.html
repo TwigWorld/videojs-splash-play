@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>videojs-splash-play Demo</title>
-  <link href="/node_modules/video.js/dist/video-js.css" rel="stylesheet">
+  <link href="node_modules/video.js/dist/video-js.css" rel="stylesheet">
   <link href="/dev-preview.css" rel="stylesheet">
 </head>
 <body>
@@ -12,15 +12,15 @@
     <source src="//vjs.zencdn.net/v/oceans.webm" type='video/webm'>
   </video>
   <ul>
-    <li><a href="/test/">Run unit tests in browser.</a></li>
-
+    <li><a href="/test/debug.html">Run unit tests in browser.</a></li>
+    
   </ul>
-  <script src="/node_modules/video.js/dist/video.js"></script>
-  <script src="/dist/videojs-splash-play.js"></script>
+  <script src="node_modules/video.js/dist/video.js"></script>
+  <script src="dist/videojs-splash-play.js"></script>
   <script>
     (function(window, videojs) {
-      var player = window.player = videojs('videojs-splash-play-player');
-      player.splashPlay();
+      var examplePlayer = window.examplePlayer = videojs('videojs-splash-play-player');
+      var splashPlay = window.splashPlay = examplePlayer.splashPlay();
     }(window, window.videojs));
   </script>
 </body>

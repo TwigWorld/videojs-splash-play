@@ -41,8 +41,8 @@ QUnit.test('registers itself with video.js', function(assert) {
   assert.expect(2);
 
   assert.strictEqual(
-    Player.prototype.splashPlay,
-    plugin,
+    typeof Player.prototype.splashPlay,
+    'function',
     'videojs-splash-play plugin was registered'
   );
 
@@ -62,8 +62,8 @@ QUnit.test('adds the default class to the player', function(assert) {
   assert.expect(2);
 
   assert.strictEqual(
-    Player.prototype.splashPlay,
-    plugin,
+    typeof Player.prototype.splashPlay,
+    'function',
     'videojs-splash-play plugin was registered'
   );
 
@@ -84,8 +84,8 @@ QUnit.test('adds a custom class to the player', function(assert) {
   assert.expect(2);
 
   assert.strictEqual(
-    Player.prototype.splashPlay,
-    plugin,
+    typeof Player.prototype.splashPlay,
+    'function',
     'videojs-splash-play plugin was registered'
   );
 
@@ -108,8 +108,8 @@ QUnit.test('adds a class to the icon when the video is large', function(assert) 
   assert.expect(2);
 
   assert.strictEqual(
-    Player.prototype.splashPlay,
-    plugin,
+    typeof Player.prototype.splashPlay,
+    'function',
     'videojs-splash-play plugin was registered'
   );
 
@@ -131,8 +131,8 @@ QUnit.test('removes a class on the icon when the video is small', function(asser
   assert.expect(2);
 
   assert.strictEqual(
-    Player.prototype.splashPlay,
-    plugin,
+    typeof Player.prototype.splashPlay,
+    'function',
     'videojs-splash-play plugin was registered'
   );
 
