@@ -70,9 +70,6 @@
     "src/",
     "test/"
   ],
-  "dependencies": {
-    "global": "^4.4.0"
-  },
   "peerDependencies": {
     "video.js": "^8.0.0"
   },
@@ -81,6 +78,7 @@
     "@babel/runtime": "^7.14.0",
     "@videojs/babel-config": "^1.0.2",
     "@videojs/generator-helpers": "^3.2.0",
+    "global": "^4.4.0",
     "karma": "^6.3.2",
     "rollup": "^2.46.0",
     "sinon": "^9.1.0",
