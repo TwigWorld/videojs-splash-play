@@ -6,9 +6,6 @@ const defaults = {
   largePlayerSize: 500
 };
 
-// Cross-compatibility for Video.js 5 and 6.
-const registerPlugin = videojs.registerPlugin || videojs.plugin;
-
 /**
  * A video.js plugin.
  *
@@ -23,7 +20,7 @@ const registerPlugin = videojs.registerPlugin || videojs.plugin;
  */
 const splashPlay = function(options) {
   this.ready(() => {
-    options = videojs.mergeOptions(defaults, options);
+    options = videojs.obj.merge(defaults, options);
 
     const player = this;
 
@@ -69,7 +66,7 @@ const splashPlay = function(options) {
 };
 
 // Register the plugin with video.js.
-registerPlugin('splashPlay', splashPlay);
+videojs.registerPlugin('splashPlay', splashPlay);
 
 // Include the version number.
 splashPlay.VERSION = '__VERSION__';
